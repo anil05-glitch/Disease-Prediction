@@ -1,0 +1,16 @@
+name: MachineLearning
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - python=3.8
+  - flask
+  - pandas
+  - numpy
+  - scikit-learn
+  - seaborn
+  - matplotlib
+  - pyyaml
+  - joblib
+  - gradio
+  - pip
