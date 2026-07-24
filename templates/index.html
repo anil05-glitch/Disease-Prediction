@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disease Predictor App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <!-- Top Navigation Bar -->
+    <nav class="navbar">
+        <h2>MediCheck AI</h2>
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="#" onclick="alert('Dashboard coming soon!')">Dashboard</a>
+            <a href="#" onclick="alert('Profile settings not connected yet.')">Profile</a>
+        </div>
+        
+        <!-- Dark Mode Toggle Slider -->
+        <div class="theme-switch">
+            <span>Dark Mode</span>
+            <label class="switch">
+                <input type="checkbox" id="darkModeToggle">
+                <span class="slider"></span>
+            </label>
+        </div>
+    </nav>
+
+    <div class="app-container">
+        <!-- Side Bar -->
+        <aside class="sidebar">
+            <h3>Quick Notes</h3>
+            
+            <div class="note">
+                <strong>Note 1: Disclaimer</strong><br>
+                This AI is for educational purposes only. Always consult a real doctor.
+            </div>
+            
+            <div class="note">
+                <strong>Note 2: Accuracy</strong><br>
+                Predictions are based on historical data. Ensure you select all applicable symptoms.
+            </div>
+            
+            <div class="note">
+                <strong>Note 3: Privacy</strong><br>
+                Your symptom data is not saved after the session ends.
+            </div>
+
+            <hr style="border: 0; border-top: 1px solid var(--border-color);">
+            
+            <h3>Extra Functions</h3>
+            <!-- These are the dummy placeholder functions you requested -->
+            <button class="sidebar-btn" onclick="alert('This function is under construction.')">Download Report PDF</button>
+            <button class="sidebar-btn" onclick="alert('Chat support is currently offline.')">Contact Doctor</button>
+            <button class="sidebar-btn" onclick="alert('History tracking requires user login.')">View History</button>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <div class="hero">
+                <h1>Symptom Checker</h1>
+                <p>Select your symptoms below to get an AI-powered health insight.</p>
+            </div>
+
+            <form action="/predict" method="post">
+                <div class="symptom-grid">
+                    {% for symptom in symptoms %}
+                        <div>
+                            <input type="checkbox" name="symptoms" value="{{ symptom }}" id="{{ symptom }}" class="symptom-checkbox">
+                            <label class="symptom-label" for="{{ symptom }}">
+                                {{ symptom.replace('_', ' ').title() }}
+                            </label>
+                        </div>
+                    {% endfor %}
+                </div>
+                
+                <div style="text-align: center;">
+                    <button type="submit" class="btn-primary">Predict Disease</button>
+                </div>
+            </form>
+        </main>
+    </div>
+
+    <!-- JavaScript to handle Dark Mode Memory -->
+    <script>
+        const toggleSwitch = document.getElementById('darkModeToggle');
+        
+        // Check local storage for dark mode preference
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark-mode');
+            toggleSwitch.checked = true;
+        }
+
+        // Listen for slider toggle
+        toggleSwitch.addEventListener('change', function() {
+            if (this.checked) {
+                document.body.classList.add('dark-mode');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                document.body.classList.remove('dark-mode');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+    </script>
+</body>
+</html>
