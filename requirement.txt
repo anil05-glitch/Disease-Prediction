@@ -1,0 +1,8 @@
+google-genai==2.14.0
+gradio
+pandas
+numpy
+scikit-learn
+matplotlib
+seaborn
+requests
