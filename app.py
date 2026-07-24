@@ -16,7 +16,7 @@ else:
 
 # 2. Load trained model and symptoms
 ml_model = load("decision_tree.joblib")
-df_train = pd.read_csv("dataset/training_data.csv")
+df_train = pd.read_csv("training_data.csv")
 symptoms = df_train.columns[:-2].tolist() 
 
 
